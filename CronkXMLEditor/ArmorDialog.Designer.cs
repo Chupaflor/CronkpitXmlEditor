@@ -221,6 +221,7 @@
             // 
             // ElectricDefVal
             // 
+            this.ElectricDefVal.Enabled = false;
             this.ElectricDefVal.Location = new System.Drawing.Point(67, 175);
             this.ElectricDefVal.Name = "ElectricDefVal";
             this.ElectricDefVal.ReadOnly = true;
@@ -229,6 +230,7 @@
             // 
             // FrostDefVal
             // 
+            this.FrostDefVal.Enabled = false;
             this.FrostDefVal.Location = new System.Drawing.Point(67, 149);
             this.FrostDefVal.Name = "FrostDefVal";
             this.FrostDefVal.ReadOnly = true;
@@ -237,6 +239,7 @@
             // 
             // AcidDefVal
             // 
+            this.AcidDefVal.Enabled = false;
             this.AcidDefVal.Location = new System.Drawing.Point(67, 123);
             this.AcidDefVal.Name = "AcidDefVal";
             this.AcidDefVal.ReadOnly = true;
@@ -245,6 +248,7 @@
             // 
             // FireDefVal
             // 
+            this.FireDefVal.Enabled = false;
             this.FireDefVal.Location = new System.Drawing.Point(67, 97);
             this.FireDefVal.Name = "FireDefVal";
             this.FireDefVal.ReadOnly = true;
@@ -253,6 +257,7 @@
             // 
             // CrushingDefVal
             // 
+            this.CrushingDefVal.Enabled = false;
             this.CrushingDefVal.Location = new System.Drawing.Point(67, 71);
             this.CrushingDefVal.Name = "CrushingDefVal";
             this.CrushingDefVal.ReadOnly = true;
@@ -261,6 +266,7 @@
             // 
             // PiercingDefVal
             // 
+            this.PiercingDefVal.Enabled = false;
             this.PiercingDefVal.Location = new System.Drawing.Point(67, 45);
             this.PiercingDefVal.Name = "PiercingDefVal";
             this.PiercingDefVal.ReadOnly = true;
@@ -269,6 +275,7 @@
             // 
             // SlashingDefVal
             // 
+            this.SlashingDefVal.Enabled = false;
             this.SlashingDefVal.Location = new System.Drawing.Point(67, 19);
             this.SlashingDefVal.Name = "SlashingDefVal";
             this.SlashingDefVal.ReadOnly = true;

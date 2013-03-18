@@ -71,6 +71,14 @@
             this.WeaponMinDmg = new System.Windows.Forms.NumericUpDown();
             this.WeaponHands = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.ScrollSpecAnim = new System.Windows.Forms.ListBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.ScrollBuffDebuff = new System.Windows.Forms.ListBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.ScrollProjType = new System.Windows.Forms.ListBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.ScrollBuffDuration = new System.Windows.Forms.NumericUpDown();
+            this.label29 = new System.Windows.Forms.Label();
             this.ScrollChainImpacts = new System.Windows.Forms.NumericUpDown();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -117,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.WeaponMinDmg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WeaponHands)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ScrollBuffDuration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScrollChainImpacts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScrollMaxDmg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScrollMinDmg)).BeginInit();
@@ -612,6 +621,14 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.ScrollSpecAnim);
+            this.groupBox4.Controls.Add(this.label32);
+            this.groupBox4.Controls.Add(this.ScrollBuffDebuff);
+            this.groupBox4.Controls.Add(this.label31);
+            this.groupBox4.Controls.Add(this.ScrollProjType);
+            this.groupBox4.Controls.Add(this.label30);
+            this.groupBox4.Controls.Add(this.ScrollBuffDuration);
+            this.groupBox4.Controls.Add(this.label29);
             this.groupBox4.Controls.Add(this.ScrollChainImpacts);
             this.groupBox4.Controls.Add(this.label24);
             this.groupBox4.Controls.Add(this.label23);
@@ -641,22 +658,113 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Scroll Properties:";
             // 
+            // ScrollSpecAnim
+            // 
+            this.ScrollSpecAnim.FormattingEnabled = true;
+            this.ScrollSpecAnim.Items.AddRange(new object[] {
+            "None",
+            "Earthquake",
+            "Alert",
+            "BloodAcid"});
+            this.ScrollSpecAnim.Location = new System.Drawing.Point(132, 225);
+            this.ScrollSpecAnim.Name = "ScrollSpecAnim";
+            this.ScrollSpecAnim.Size = new System.Drawing.Size(112, 43);
+            this.ScrollSpecAnim.TabIndex = 29;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(132, 209);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(94, 13);
+            this.label32.TabIndex = 28;
+            this.label32.Text = "Special Animation:";
+            // 
+            // ScrollBuffDebuff
+            // 
+            this.ScrollBuffDebuff.FormattingEnabled = true;
+            this.ScrollBuffDebuff.Items.AddRange(new object[] {
+            "Blind",
+            "Deaf",
+            "Anosmia",
+            "LynxFer",
+            "PantherFer",
+            "TigerFer"});
+            this.ScrollBuffDebuff.Location = new System.Drawing.Point(132, 163);
+            this.ScrollBuffDebuff.Name = "ScrollBuffDebuff";
+            this.ScrollBuffDebuff.Size = new System.Drawing.Size(112, 43);
+            this.ScrollBuffDebuff.TabIndex = 27;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(132, 147);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(92, 13);
+            this.label31.TabIndex = 26;
+            this.label31.Text = "Spell Buff/Debuff:";
+            // 
+            // ScrollProjType
+            // 
+            this.ScrollProjType.FormattingEnabled = true;
+            this.ScrollProjType.Items.AddRange(new object[] {
+            "Blank",
+            "Arrow",
+            "Flamebolt",
+            "Frostbolt",
+            "Javelin",
+            "AcidCloud",
+            "Crossbow_Bolt",
+            "Fireball",
+            "Lightning_Bolt",
+            "Bonespear",
+            "Bloody_AcidCloud"});
+            this.ScrollProjType.Location = new System.Drawing.Point(132, 101);
+            this.ScrollProjType.Name = "ScrollProjType";
+            this.ScrollProjType.Size = new System.Drawing.Size(112, 43);
+            this.ScrollProjType.TabIndex = 25;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(132, 82);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(80, 13);
+            this.label30.TabIndex = 24;
+            this.label30.Text = "Projectile Type:";
+            // 
+            // ScrollBuffDuration
+            // 
+            this.ScrollBuffDuration.Location = new System.Drawing.Point(132, 340);
+            this.ScrollBuffDuration.Name = "ScrollBuffDuration";
+            this.ScrollBuffDuration.Size = new System.Drawing.Size(114, 20);
+            this.ScrollBuffDuration.TabIndex = 23;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(131, 324);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(47, 13);
+            this.label29.TabIndex = 22;
+            this.label29.Text = "Duration";
+            // 
             // ScrollChainImpacts
             // 
-            this.ScrollChainImpacts.Location = new System.Drawing.Point(132, 241);
+            this.ScrollChainImpacts.Location = new System.Drawing.Point(134, 379);
             this.ScrollChainImpacts.Maximum = new decimal(new int[] {
             99999999,
             0,
             0,
             0});
             this.ScrollChainImpacts.Name = "ScrollChainImpacts";
-            this.ScrollChainImpacts.Size = new System.Drawing.Size(120, 20);
+            this.ScrollChainImpacts.Size = new System.Drawing.Size(112, 20);
             this.ScrollChainImpacts.TabIndex = 21;
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(132, 225);
+            this.label24.Location = new System.Drawing.Point(131, 363);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(77, 13);
             this.label24.TabIndex = 20;
@@ -684,13 +792,13 @@
             "Electric"});
             this.ScrollDmgTyp.Location = new System.Drawing.Point(132, 36);
             this.ScrollDmgTyp.Name = "ScrollDmgTyp";
-            this.ScrollDmgTyp.Size = new System.Drawing.Size(114, 108);
+            this.ScrollDmgTyp.Size = new System.Drawing.Size(114, 43);
             this.ScrollDmgTyp.TabIndex = 18;
             // 
             // ScrollDestroysWalls
             // 
             this.ScrollDestroysWalls.AutoSize = true;
-            this.ScrollDestroysWalls.Location = new System.Drawing.Point(132, 164);
+            this.ScrollDestroysWalls.Location = new System.Drawing.Point(132, 274);
             this.ScrollDestroysWalls.Name = "ScrollDestroysWalls";
             this.ScrollDestroysWalls.Size = new System.Drawing.Size(96, 17);
             this.ScrollDestroysWalls.TabIndex = 17;
@@ -700,7 +808,7 @@
             // ScrollMeleeSpell
             // 
             this.ScrollMeleeSpell.AutoSize = true;
-            this.ScrollMeleeSpell.Location = new System.Drawing.Point(132, 187);
+            this.ScrollMeleeSpell.Location = new System.Drawing.Point(132, 297);
             this.ScrollMeleeSpell.Name = "ScrollMeleeSpell";
             this.ScrollMeleeSpell.Size = new System.Drawing.Size(81, 17);
             this.ScrollMeleeSpell.TabIndex = 16;
@@ -850,7 +958,8 @@
             "personalBuff",
             "piercingBolt",
             "smallfixedAOE",
-            "chainedBolt"});
+            "chainedBolt",
+            "enemyDebuff"});
             this.ScrollAOEType.Location = new System.Drawing.Point(6, 36);
             this.ScrollAOEType.Name = "ScrollAOEType";
             this.ScrollAOEType.Size = new System.Drawing.Size(120, 108);
@@ -975,6 +1084,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.WeaponHands)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ScrollBuffDuration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScrollChainImpacts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScrollMaxDmg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScrollMinDmg)).EndInit();
@@ -1063,6 +1173,14 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.ErrorProvider errorProv;
         private System.Windows.Forms.Button CalcArmorDef;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ListBox ScrollBuffDebuff;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.ListBox ScrollProjType;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.NumericUpDown ScrollBuffDuration;
+        private System.Windows.Forms.ListBox ScrollSpecAnim;
+        private System.Windows.Forms.Label label32;
     }
 }
 

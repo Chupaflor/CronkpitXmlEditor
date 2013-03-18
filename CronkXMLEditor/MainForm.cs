@@ -220,6 +220,14 @@ namespace CronkXMLEditor
             scrollMeleeSpellNode.InnerText = meleespelltxt;
             XmlNode scrollBoltBouncesNode = scrollDoc.CreateElement("ChainImpacts");
             scrollBoltBouncesNode.InnerText = ScrollChainImpacts.Value.ToString();
+            XmlNode scrollPrjTypeNode = scrollDoc.CreateElement("SpellProjectile");
+            scrollPrjTypeNode.InnerText = ScrollProjType.Items[ScrollProjType.SelectedIndex].ToString();
+            XmlNode scrollSpecAnimNode = scrollDoc.CreateElement("SpecialAnimation");
+            scrollSpecAnimNode.InnerText = ScrollSpecAnim.Items[ScrollSpecAnim.SelectedIndex].ToString();
+            XmlNode scrollBuffDebuffNode = scrollDoc.CreateElement("SpellSpecialEffect");
+            scrollBuffDebuffNode.InnerText = ScrollBuffDebuff.Items[ScrollBuffDebuff.SelectedIndex].ToString();
+            XmlNode scrollBuffDebuffDurationNode = scrollDoc.CreateElement("SpecialEffectDuration");
+            scrollBuffDebuffDurationNode.InnerText = ScrollBuffDuration.Value.ToString();
 
             scrollNode.AppendChild(scrollAOETypeNode);
             scrollNode.AppendChild(scrollTierNode);
@@ -232,6 +240,10 @@ namespace CronkXMLEditor
             scrollNode.AppendChild(scrollDestroyWallsNode);
             scrollNode.AppendChild(scrollMeleeSpellNode);
             scrollNode.AppendChild(scrollBoltBouncesNode);
+            scrollNode.AppendChild(scrollPrjTypeNode);
+            scrollNode.AppendChild(scrollSpecAnimNode);
+            scrollNode.AppendChild(scrollBuffDebuffNode);
+            scrollNode.AppendChild(scrollBuffDebuffDurationNode);
 
             bool isDup = is_duplicate((int)ItemIDNO.Value);
 
