@@ -46,11 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainForm.cs">
+    <Compile Include="ClassDescEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="ClassDescEditor.Designer.cs">
+      <DependentUpon>ClassDescEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ItemEdit.Designer.cs">
+      <DependentUpon>ItemEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="ArmorDialog.cs">
       <SubType>Form</SubType>
@@ -58,13 +64,34 @@
     <Compile Include="ArmorDialog.Designer.cs">
       <DependentUpon>ArmorDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="MDIMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIMain.Designer.cs">
+      <DependentUpon>MDIMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="PromptEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PromptEditor.Designer.cs">
+      <DependentUpon>PromptEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ArmorDialog.resx">
       <DependentUpon>ArmorDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="ClassDescEditor.resx">
+      <DependentUpon>ClassDescEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemEdit.resx">
+      <DependentUpon>ItemEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIMain.resx">
+      <DependentUpon>MDIMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PromptEditor.resx">
+      <DependentUpon>PromptEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
