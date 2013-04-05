@@ -85,6 +85,7 @@
             // 
             this.ShopPromptShopSection.FormattingEnabled = true;
             this.ShopPromptShopSection.Items.AddRange(new object[] {
+            "Intro",
             "Weapons",
             "Armor",
             "Scrolls",

@@ -45,7 +45,7 @@ namespace CronkXMLEditor
             descDocPath = basepath + "\\classdescriptions.xml";
             petaer_promptsPath = basepath + "\\petaer_prompts.xml";
             ziktofel_promptsPath = basepath + "\\ziktofel_prompts.xml";
-            halephon_promptsPath = basepath + "\\halephon_prmopts.xml";
+            halephon_promptsPath = basepath + "\\halephon_prompts.xml";
             falsael_promptsPath = basepath + "\\falsael_prompts.xml";
 
             pathList[0] = wDocPath;
@@ -84,6 +84,12 @@ namespace CronkXMLEditor
                             break;
                         case 4:
                             assetAttribute.Value = "CKPLibrary.ClassDescDC[]";
+                            break;
+                        case 5:
+                        case 6:
+                        case 7:
+                        case 8:
+                            assetAttribute.Value = "CKPLibrary.ShopPromptDC[]";
                             break;
                     }
                     assetNode.Attributes.Append(assetAttribute);
