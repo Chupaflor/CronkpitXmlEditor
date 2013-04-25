@@ -52,6 +52,18 @@
     <Compile Include="ClassDescEditor.Designer.cs">
       <DependentUpon>ClassDescEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="DungeonDesignerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DungeonDesignerForm.Designer.cs">
+      <DependentUpon>DungeonDesignerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DungeonRoomEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DungeonRoomEditorForm.Designer.cs">
+      <DependentUpon>DungeonRoomEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ItemEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +95,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClassDescEditor.resx">
       <DependentUpon>ClassDescEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DungeonDesignerForm.resx">
+      <DependentUpon>DungeonDesignerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DungeonRoomEditorForm.resx">
+      <DependentUpon>DungeonRoomEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ItemEdit.resx">
       <DependentUpon>ItemEdit.cs</DependentUpon>

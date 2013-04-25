@@ -35,10 +35,12 @@
             this.windowsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.itemWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.classDescriptionEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dungeonThemeDesignerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shopPromptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cascadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.dungeonRoomDesignerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,6 +77,8 @@
             this.windowsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.itemWindowToolStripMenuItem,
             this.classDescriptionEditorToolStripMenuItem,
+            this.dungeonThemeDesignerToolStripMenuItem,
+            this.dungeonRoomDesignerToolStripMenuItem,
             this.shopPromptsToolStripMenuItem,
             this.toolStripSeparator2,
             this.cascadeToolStripMenuItem});
@@ -85,35 +89,49 @@
             // itemWindowToolStripMenuItem
             // 
             this.itemWindowToolStripMenuItem.Name = "itemWindowToolStripMenuItem";
-            this.itemWindowToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.itemWindowToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.itemWindowToolStripMenuItem.Text = "Item Editor";
             this.itemWindowToolStripMenuItem.Click += new System.EventHandler(this.itemWindowToolStripMenuItem_Click);
             // 
             // classDescriptionEditorToolStripMenuItem
             // 
             this.classDescriptionEditorToolStripMenuItem.Name = "classDescriptionEditorToolStripMenuItem";
-            this.classDescriptionEditorToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.classDescriptionEditorToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.classDescriptionEditorToolStripMenuItem.Text = "Class Description Editor";
             this.classDescriptionEditorToolStripMenuItem.Click += new System.EventHandler(this.classDescriptionEditorToolStripMenuItem_Click);
+            // 
+            // dungeonThemeDesignerToolStripMenuItem
+            // 
+            this.dungeonThemeDesignerToolStripMenuItem.Name = "dungeonThemeDesignerToolStripMenuItem";
+            this.dungeonThemeDesignerToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.dungeonThemeDesignerToolStripMenuItem.Text = "&Dungeon Theme Designer";
+            this.dungeonThemeDesignerToolStripMenuItem.Click += new System.EventHandler(this.dungeonThemeDesignerToolStripMenuItem_Click);
             // 
             // shopPromptsToolStripMenuItem
             // 
             this.shopPromptsToolStripMenuItem.Name = "shopPromptsToolStripMenuItem";
-            this.shopPromptsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.shopPromptsToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.shopPromptsToolStripMenuItem.Text = "Shop Prompt Editor";
             this.shopPromptsToolStripMenuItem.Click += new System.EventHandler(this.shopPromptsToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(195, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(209, 6);
             // 
             // cascadeToolStripMenuItem
             // 
             this.cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
-            this.cascadeToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.cascadeToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.cascadeToolStripMenuItem.Text = "&Cascade";
             this.cascadeToolStripMenuItem.Click += new System.EventHandler(this.CascadeToolStripMenuItem_Click);
+            // 
+            // dungeonRoomDesignerToolStripMenuItem
+            // 
+            this.dungeonRoomDesignerToolStripMenuItem.Name = "dungeonRoomDesignerToolStripMenuItem";
+            this.dungeonRoomDesignerToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.dungeonRoomDesignerToolStripMenuItem.Text = "Dungeon &Room Designer";
+            this.dungeonRoomDesignerToolStripMenuItem.Click += new System.EventHandler(this.dungeonRoomDesignerToolStripMenuItem_Click);
             // 
             // MDIMain
             // 
@@ -146,6 +164,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem shopPromptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem classDescriptionEditorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dungeonThemeDesignerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dungeonRoomDesignerToolStripMenuItem;
     }
 }
 

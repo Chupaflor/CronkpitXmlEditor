@@ -665,7 +665,8 @@
             "None",
             "Earthquake",
             "Alert",
-            "BloodAcid"});
+            "BloodAcid",
+            "Blank"});
             this.ScrollSpecAnim.Location = new System.Drawing.Point(132, 225);
             this.ScrollSpecAnim.Name = "ScrollSpecAnim";
             this.ScrollSpecAnim.Size = new System.Drawing.Size(112, 43);

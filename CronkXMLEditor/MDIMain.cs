@@ -23,6 +23,12 @@ namespace CronkXMLEditor
         XmlDocument halephon_prompts = new XmlDocument();
         XmlDocument falsael_prompts = new XmlDocument();
 
+        //General floor documents.
+        XmlDocument necro_floorDoc = new XmlDocument();
+        XmlDocument gpeak_floorDoc = new XmlDocument();
+        XmlDocument frunm_floorDoc = new XmlDocument();
+        XmlDocument sunkn_floorDoc = new XmlDocument();
+
         string wDocPath;
         string aDocPath;
         string pDocPath;
@@ -32,8 +38,12 @@ namespace CronkXMLEditor
         string ziktofel_promptsPath;
         string halephon_promptsPath;
         string falsael_promptsPath;
+        string necro_floorpath;
+        string gpeak_floorpath;
+        string frunm_floorpath;
+        string sunkn_floorpath;
 
-        string[] pathList = new string[9];
+        string[] pathList = new string[13];
 
         private void MDIMain_Load(object sender, EventArgs e)
         {
@@ -47,6 +57,10 @@ namespace CronkXMLEditor
             ziktofel_promptsPath = basepath + "\\ziktofel_prompts.xml";
             halephon_promptsPath = basepath + "\\halephon_prompts.xml";
             falsael_promptsPath = basepath + "\\falsael_prompts.xml";
+            necro_floorpath = basepath + "\\necropolis_floors.xml";
+            gpeak_floorpath = basepath + "\\gelidpeak_floors.xml";
+            frunm_floorpath = basepath + "\\flamerunner_floors.xml";
+            sunkn_floorpath = basepath + "\\sunkencit_floors.xml";
 
             pathList[0] = wDocPath;
             pathList[1] = aDocPath;
@@ -57,6 +71,10 @@ namespace CronkXMLEditor
             pathList[6] = ziktofel_promptsPath;
             pathList[7] = halephon_promptsPath;
             pathList[8] = falsael_promptsPath;
+            pathList[9] = necro_floorpath;
+            pathList[10] = gpeak_floorpath;
+            pathList[11] = frunm_floorpath;
+            pathList[12] = sunkn_floorpath;
 
             for (int i = 0; i < pathList.Count(); i++)
             {
@@ -91,6 +109,12 @@ namespace CronkXMLEditor
                         case 8:
                             assetAttribute.Value = "CKPLibrary.ShopPromptDC[]";
                             break;
+                        case 9:
+                        case 10:
+                        case 11:
+                        case 12:
+                            assetAttribute.Value = "CKPLibrary.FloorThemeDC[]";
+                            break;
                     }
                     assetNode.Attributes.Append(assetAttribute);
 
@@ -109,6 +133,11 @@ namespace CronkXMLEditor
             ziktofel_prompts.Load(ziktofel_promptsPath);
             halephon_prompts.Load(halephon_promptsPath);
             falsael_prompts.Load(falsael_promptsPath);
+            //Floors.
+            necro_floorDoc.Load(necro_floorpath);
+            gpeak_floorDoc.Load(gpeak_floorpath);
+            frunm_floorDoc.Load(frunm_floorpath);
+            sunkn_floorDoc.Load(sunkn_floorpath);
         }
 
         public MDIMain()
@@ -160,6 +189,23 @@ namespace CronkXMLEditor
             cDescEditor.Show();
         }
 
-        #endregion   
+        private void dungeonThemeDesignerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DungeonDesignerForm dungeonDesigner = new DungeonDesignerForm(ref necro_floorDoc, necro_floorpath,
+                                                                          ref gpeak_floorDoc, gpeak_floorpath,
+                                                                          ref frunm_floorDoc, frunm_floorpath,
+                                                                          ref sunkn_floorDoc, sunkn_floorpath);
+            dungeonDesigner.MdiParent = this;
+            dungeonDesigner.Show();
+        }
+
+        #endregion        
+
+        private void dungeonRoomDesignerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DungeonRoomEditorForm roomDesigner = new DungeonRoomEditorForm();
+            roomDesigner.MdiParent = this;
+            roomDesigner.Show();
+        }
     }
 }
