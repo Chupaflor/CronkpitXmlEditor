@@ -29,6 +29,9 @@ namespace CronkXMLEditor
         XmlDocument frunm_floorDoc = new XmlDocument();
         XmlDocument sunkn_floorDoc = new XmlDocument();
 
+        //General room list:
+        XmlDocument general_room_list = new XmlDocument();
+
         string wDocPath;
         string aDocPath;
         string pDocPath;
@@ -42,8 +45,9 @@ namespace CronkXMLEditor
         string gpeak_floorpath;
         string frunm_floorpath;
         string sunkn_floorpath;
+        string general_roompath;
 
-        string[] pathList = new string[13];
+        string[] pathList = new string[14];
 
         private void MDIMain_Load(object sender, EventArgs e)
         {
@@ -61,6 +65,7 @@ namespace CronkXMLEditor
             gpeak_floorpath = basepath + "\\gelidpeak_floors.xml";
             frunm_floorpath = basepath + "\\flamerunner_floors.xml";
             sunkn_floorpath = basepath + "\\sunkencit_floors.xml";
+            general_roompath = basepath + "\\general_rooms.xml";
 
             pathList[0] = wDocPath;
             pathList[1] = aDocPath;
@@ -75,6 +80,7 @@ namespace CronkXMLEditor
             pathList[10] = gpeak_floorpath;
             pathList[11] = frunm_floorpath;
             pathList[12] = sunkn_floorpath;
+            pathList[13] = general_roompath;
 
             for (int i = 0; i < pathList.Count(); i++)
             {
@@ -115,6 +121,9 @@ namespace CronkXMLEditor
                         case 12:
                             assetAttribute.Value = "CKPLibrary.FloorThemeDC[]";
                             break;
+                        case 13:
+                            assetAttribute.Value = "CKPLibrary.RoomDC[]";
+                            break;
                     }
                     assetNode.Attributes.Append(assetAttribute);
 
@@ -138,6 +147,8 @@ namespace CronkXMLEditor
             gpeak_floorDoc.Load(gpeak_floorpath);
             frunm_floorDoc.Load(frunm_floorpath);
             sunkn_floorDoc.Load(sunkn_floorpath);
+            //Rooms
+            general_room_list.Load(general_roompath);
         }
 
         public MDIMain()
@@ -203,7 +214,7 @@ namespace CronkXMLEditor
 
         private void dungeonRoomDesignerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DungeonRoomEditorForm roomDesigner = new DungeonRoomEditorForm();
+            DungeonRoomEditorForm roomDesigner = new DungeonRoomEditorForm(ref general_room_list, general_roompath);
             roomDesigner.MdiParent = this;
             roomDesigner.Show();
         }
