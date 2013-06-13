@@ -31,6 +31,9 @@ namespace CronkXMLEditor
 
         //General room list:
         XmlDocument general_room_list = new XmlDocument();
+        
+        //Spawn table documents:
+        XmlDocument necro_spawnDoc = new XmlDocument();
 
         string wDocPath;
         string aDocPath;
@@ -46,8 +49,9 @@ namespace CronkXMLEditor
         string frunm_floorpath;
         string sunkn_floorpath;
         string general_roompath;
+        string necro_spawnpath;
 
-        string[] pathList = new string[14];
+        string[] pathList = new string[15];
 
         private void MDIMain_Load(object sender, EventArgs e)
         {
@@ -66,6 +70,7 @@ namespace CronkXMLEditor
             frunm_floorpath = basepath + "\\flamerunner_floors.xml";
             sunkn_floorpath = basepath + "\\sunkencit_floors.xml";
             general_roompath = basepath + "\\general_rooms.xml";
+            necro_spawnpath = basepath + "\\necro_spawntables.xml";
 
             pathList[0] = wDocPath;
             pathList[1] = aDocPath;
@@ -81,6 +86,7 @@ namespace CronkXMLEditor
             pathList[11] = frunm_floorpath;
             pathList[12] = sunkn_floorpath;
             pathList[13] = general_roompath;
+            pathList[14] = necro_spawnpath;
 
             for (int i = 0; i < pathList.Count(); i++)
             {
@@ -124,6 +130,9 @@ namespace CronkXMLEditor
                         case 13:
                             assetAttribute.Value = "CKPLibrary.RoomDC[]";
                             break;
+                        case 14:
+                            assetAttribute.Value = "CKPLibrary.SpawnTableDC[]";
+                            break;
                     }
                     assetNode.Attributes.Append(assetAttribute);
 
@@ -149,6 +158,8 @@ namespace CronkXMLEditor
             sunkn_floorDoc.Load(sunkn_floorpath);
             //Rooms
             general_room_list.Load(general_roompath);
+            //Spawn tables
+            necro_spawnDoc.Load(necro_spawnpath);
         }
 
         public MDIMain()
@@ -217,6 +228,13 @@ namespace CronkXMLEditor
             DungeonRoomEditorForm roomDesigner = new DungeonRoomEditorForm(ref general_room_list, general_roompath);
             roomDesigner.MdiParent = this;
             roomDesigner.Show();
+        }
+
+        private void spawnTableEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SpawnTableEditorForm spawnDesigner = new SpawnTableEditorForm(ref necro_spawnDoc, necro_spawnpath);
+            spawnDesigner.MdiParent = this;
+            spawnDesigner.Show();
         }
     }
 }

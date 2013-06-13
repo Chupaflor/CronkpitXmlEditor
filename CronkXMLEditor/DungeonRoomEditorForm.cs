@@ -22,6 +22,8 @@ namespace CronkXMLEditor
 
         //Tiles
         tile_type[,] roomMatrix;
+        //Anchors
+        List<matrix_coord> hall_anchors;
         //Doodads
         string c_doodad_name;
         List<doodad_type> doodads;
@@ -57,7 +59,7 @@ namespace CronkXMLEditor
         private enum doodad_type
         {
             Blood_Splatter, Armor_Suit, Destroyed_Armorsuit, Altar, Cage, Corpse_Pile,
-            Bookshelf, Destroyed_Bookshelf
+            Bookshelf, Destroyed_Bookshelf, HallAnchor, Ironbar_Wall, Ironbar_Door
         };
 
         private enum brush_mode
@@ -68,7 +70,7 @@ namespace CronkXMLEditor
         private enum monster_type
         {
             Zombie, Zombie_Fanatic, Gore_Hound, Gore_Wolf, Skeleton, Armored_Skeleton, Ghost,
-            Void_Wraith, Necromancer, Hollow_Knight, Red_Knight, Boneyard
+            Void_Wraith, Necromancer, Hollow_Knight, Red_Knight, Boneyard, Schrodingers_HK
         };
 
         public DungeonRoomEditorForm(ref XmlDocument general_rooms, string general_paths)
@@ -77,6 +79,8 @@ namespace CronkXMLEditor
 
             roomwidth = 5;
             roomheight = 5;
+
+            hall_anchors = new List<matrix_coord>();
 
             doodads = new List<doodad_type>();
             doodad_coords = new List<matrix_coord>();
@@ -117,10 +121,18 @@ namespace CronkXMLEditor
                     }
                     else if (current_brush_mode == brush_mode.Doodads)
                     {
-                        doodads.Add(current_doodad);
-                        doodad_coords.Add(m_coord);
-                        doodad_appearance_chances.Add((int)doodad_chance_numeric.Value);
-                        c_doodads_listBox.Items.Add(c_doodad_name + " " + m_coord.ToString() + " " + doodad_chance_numeric.Value.ToString() + "%");
+                        if (current_doodad != doodad_type.HallAnchor)
+                        {
+                            doodads.Add(current_doodad);
+                            doodad_coords.Add(m_coord);
+                            doodad_appearance_chances.Add((int)doodad_chance_numeric.Value);
+                            c_doodads_listBox.Items.Add(c_doodad_name + " " + m_coord.ToString() + " " + doodad_chance_numeric.Value.ToString() + "%");
+                        }
+                        else
+                        {
+                            hall_anchors.Add(m_coord);
+                            c_hallanchor_listbox.Items.Add(m_coord.ToString());
+                        }
                         roomGraphics.DrawImage(current_doodad_img, new Rectangle(x_matrix_position * 32, y_matrix_position * 32, 32, 32));
                     }
                     else if (current_brush_mode == brush_mode.Monsters)
@@ -152,7 +164,7 @@ namespace CronkXMLEditor
 
                     original_size = monsters.Count;
                     for (int i = 0; i < original_size; i++)
-                        for (int j = 0; j < original_size; j++)
+                        for (int j = 0; j < monsters.Count; j++)
                         {
                             if (monster_coords[j].x == x_matrix_position && monster_coords[j].y == y_matrix_position)
                             {
@@ -162,6 +174,19 @@ namespace CronkXMLEditor
                                 c_monster_listbox.Items.RemoveAt(j);
                             }
                         }
+
+                    original_size = hall_anchors.Count;
+                    for(int i = 0; i < original_size; i++)
+                        for (int j = 0; j < hall_anchors.Count; j++)
+                        {
+                            if (hall_anchors[j].x == x_matrix_position && hall_anchors[j].y == y_matrix_position)
+                            {
+                                hall_anchors.RemoveAt(j);
+                                c_hallanchor_listbox.Items.RemoveAt(j);
+                            }
+                        }
+
+                    roomMatrix[x_matrix_position, y_matrix_position] = tile_type.Void;
                 }
 
                 mainPictureBox.Invalidate();
@@ -207,6 +232,7 @@ namespace CronkXMLEditor
             mainPictureBox.Invalidate();
         }
 
+        //Click events
         private void picture_brush_picture_Click(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
@@ -294,6 +320,18 @@ namespace CronkXMLEditor
                     current_doodad = doodad_type.Destroyed_Bookshelf;
                     current_doodad_img = destroyed_bookshelf_brush.Image;
                     break;
+                case "HallAnchor":
+                    current_doodad = doodad_type.HallAnchor;
+                    current_doodad_img = hallway_anchor_brush.Image;
+                    break;
+                case "Ironbar_Door":
+                    current_doodad = doodad_type.Ironbar_Door;
+                    current_doodad_img = ironbar_door_brush.Image;
+                    break;
+                case "Ironbar_Wall":
+                    current_doodad = doodad_type.Ironbar_Wall;
+                    current_doodad_img = ironbar_wall_brush.Image;
+                    break;
             }
         }
 
@@ -343,7 +381,7 @@ namespace CronkXMLEditor
                     break;
                 case "Ghost":
                     current_monster = monster_type.Ghost;
-                    current_doodad_img = ghost_brush.Image;
+                    current_monster_img = ghost_brush.Image;
                     break;
                 case "RedKnight":
                     current_monster = monster_type.Red_Knight;
@@ -353,9 +391,14 @@ namespace CronkXMLEditor
                     current_monster = monster_type.Hollow_Knight;
                     current_monster_img = hollow_knight_brush.Image;
                     break;
+                case "Schrodingers_HK":
+                    current_monster = monster_type.Schrodingers_HK;
+                    current_monster_img = schrodingers_hk_brush.Image;
+                    break;
             }
         }
 
+        //Compress room to XML
         private void compress_room_to_xml(XmlDocument target_doc, string target_path)
         {
             target_node = target_doc.SelectSingleNode("XnaContent/Asset");
@@ -376,6 +419,12 @@ namespace CronkXMLEditor
             XmlNode roomHeightNode = target_doc.CreateElement("RoomHeight");
             roomHeightNode.InnerText = roomheight.ToString();
 
+            XmlNode overlapNode = target_doc.CreateElement("AllowOverlap");
+            string overlap = "false";
+            if(OverlapChkBox.Checked)
+                overlap = "true";
+            overlapNode.InnerText = overlap;
+
             XmlNode roomMatrixNode = target_doc.CreateElement("Room_Matrix");
             for (int y = 0; y < roomheight; y++)
             {
@@ -387,6 +436,15 @@ namespace CronkXMLEditor
                 XmlNode currentRowNode = target_doc.CreateElement("Item");
                 currentRowNode.InnerText = row;
                 roomMatrixNode.AppendChild(currentRowNode);
+            }
+            
+            //Hall Anchors
+            XmlNode roomHallAnchors = target_doc.CreateElement("Room_Hallway_Anchors");
+            for (int i = 0; i < hall_anchors.Count; i++)
+            {
+                XmlNode currentAnchorNode = target_doc.CreateElement("Item");
+                currentAnchorNode.InnerText = hall_anchors[i].compressedString();
+                roomHallAnchors.AppendChild(currentAnchorNode);
             }
 
             //Handle Doodads.
@@ -439,7 +497,9 @@ namespace CronkXMLEditor
             roomNode.AppendChild(roomGoldNode);
             roomNode.AppendChild(roomWidthNode);
             roomNode.AppendChild(roomHeightNode);
+            roomNode.AppendChild(overlapNode);
             roomNode.AppendChild(roomMatrixNode);
+            roomNode.AppendChild(roomHallAnchors);
             roomNode.AppendChild(roomDoodadsNode);
             roomNode.AppendChild(roomDoodadCoordsNode);
             roomNode.AppendChild(roomDoodadChancesNode);
@@ -501,6 +561,10 @@ namespace CronkXMLEditor
                     return "Bookshelf";
                 case doodad_type.Destroyed_Bookshelf:
                     return "DestroyedBookshelf";
+                case doodad_type.Ironbar_Wall:
+                    return "Ironbar_Wall";
+                case doodad_type.Ironbar_Door:
+                    return "Ironbar_Door";
             }
 
             return "NULL";
@@ -534,6 +598,8 @@ namespace CronkXMLEditor
                     return "Zombie";
                 case monster_type.Zombie_Fanatic:
                     return "ZombieFanatic";
+                case monster_type.Schrodingers_HK:
+                    return "Schrodingers_HK";
             }
 
             return "NULL";

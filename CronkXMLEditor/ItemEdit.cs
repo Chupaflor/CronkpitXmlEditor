@@ -167,16 +167,16 @@ namespace CronkXMLEditor
             XmlNode scrollDestroyWallsNode = scrollDoc.CreateElement("DestroysWalls");
             string destroywalltxt = "";
             if (ScrollDestroysWalls.Checked)
-                destroywalltxt = "Y";
+                destroywalltxt = "true";
             else
-                destroywalltxt = "N";
+                destroywalltxt = "false";
             scrollDestroyWallsNode.InnerText = destroywalltxt;
             XmlNode scrollMeleeSpellNode = scrollDoc.CreateElement("MeleeSpell");
             string meleespelltxt = "";
             if (ScrollMeleeSpell.Checked)
-                meleespelltxt = "Y";
+                meleespelltxt = "true";
             else
-                meleespelltxt = "N";
+                meleespelltxt = "false";
             scrollMeleeSpellNode.InnerText = meleespelltxt;
             XmlNode scrollBoltBouncesNode = scrollDoc.CreateElement("ChainImpacts");
             scrollBoltBouncesNode.InnerText = ScrollChainImpacts.Value.ToString();

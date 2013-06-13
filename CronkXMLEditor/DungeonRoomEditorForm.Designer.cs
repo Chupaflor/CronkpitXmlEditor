@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DungeonRoomEditorForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.c_hallanchor_listbox = new System.Windows.Forms.ListBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.OverlapChkBox = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.room_gold_numeric = new System.Windows.Forms.NumericUpDown();
             this.add2_all_btn = new System.Windows.Forms.Button();
@@ -56,6 +59,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.mainPictureBox = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ironbar_wall_brush = new System.Windows.Forms.PictureBox();
+            this.ironbar_door_brush = new System.Windows.Forms.PictureBox();
+            this.hallway_anchor_brush = new System.Windows.Forms.PictureBox();
             this.shallow_blood_brush = new System.Windows.Forms.PictureBox();
             this.destroyed_bookshelf_brush = new System.Windows.Forms.PictureBox();
             this.bookshelf_brush = new System.Windows.Forms.PictureBox();
@@ -90,6 +96,7 @@
             this.stn_wall_brush = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.doodad_chance_numeric = new System.Windows.Forms.NumericUpDown();
+            this.schrodingers_hk_brush = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.room_gold_numeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.floorx_numeric)).BeginInit();
@@ -100,6 +107,9 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ironbar_wall_brush)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ironbar_door_brush)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hallway_anchor_brush)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shallow_blood_brush)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.destroyed_bookshelf_brush)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookshelf_brush)).BeginInit();
@@ -130,10 +140,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.stn_floor_brush)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stn_wall_brush)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doodad_chance_numeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.schrodingers_hk_brush)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.c_hallanchor_listbox);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.OverlapChkBox);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.room_gold_numeric);
             this.groupBox1.Controls.Add(this.add2_all_btn);
@@ -163,10 +177,37 @@
             this.groupBox1.Controls.Add(this.doodad_chance_numeric);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(837, 553);
+            this.groupBox1.Size = new System.Drawing.Size(860, 591);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Room Editor:";
+            // 
+            // c_hallanchor_listbox
+            // 
+            this.c_hallanchor_listbox.FormattingEnabled = true;
+            this.c_hallanchor_listbox.Location = new System.Drawing.Point(6, 497);
+            this.c_hallanchor_listbox.Name = "c_hallanchor_listbox";
+            this.c_hallanchor_listbox.Size = new System.Drawing.Size(160, 82);
+            this.c_hallanchor_listbox.TabIndex = 36;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(3, 481);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(70, 13);
+            this.label15.TabIndex = 35;
+            this.label15.Text = "Hall Anchors:";
+            // 
+            // OverlapChkBox
+            // 
+            this.OverlapChkBox.AutoSize = true;
+            this.OverlapChkBox.Location = new System.Drawing.Point(428, 482);
+            this.OverlapChkBox.Name = "OverlapChkBox";
+            this.OverlapChkBox.Size = new System.Drawing.Size(161, 17);
+            this.OverlapChkBox.TabIndex = 34;
+            this.OverlapChkBox.Text = "Allow This Room To Overlap";
+            this.OverlapChkBox.UseVisualStyleBackColor = true;
             // 
             // label14
             // 
@@ -191,7 +232,7 @@
             // 
             // add2_all_btn
             // 
-            this.add2_all_btn.Location = new System.Drawing.Point(509, 481);
+            this.add2_all_btn.Location = new System.Drawing.Point(428, 559);
             this.add2_all_btn.Name = "add2_all_btn";
             this.add2_all_btn.Size = new System.Drawing.Size(75, 23);
             this.add2_all_btn.TabIndex = 31;
@@ -201,7 +242,7 @@
             // 
             // add2_flr_btn
             // 
-            this.add2_flr_btn.Location = new System.Drawing.Point(428, 481);
+            this.add2_flr_btn.Location = new System.Drawing.Point(509, 559);
             this.add2_flr_btn.Name = "add2_flr_btn";
             this.add2_flr_btn.Size = new System.Drawing.Size(75, 23);
             this.add2_flr_btn.TabIndex = 30;
@@ -384,7 +425,7 @@
             this.c_monster_listbox.FormattingEnabled = true;
             this.c_monster_listbox.Location = new System.Drawing.Point(172, 380);
             this.c_monster_listbox.Name = "c_monster_listbox";
-            this.c_monster_listbox.Size = new System.Drawing.Size(160, 160);
+            this.c_monster_listbox.Size = new System.Drawing.Size(160, 199);
             this.c_monster_listbox.TabIndex = 12;
             // 
             // c_doodads_listBox
@@ -392,7 +433,7 @@
             this.c_doodads_listBox.FormattingEnabled = true;
             this.c_doodads_listBox.Location = new System.Drawing.Point(6, 380);
             this.c_doodads_listBox.Name = "c_doodads_listBox";
-            this.c_doodads_listBox.Size = new System.Drawing.Size(160, 160);
+            this.c_doodads_listBox.Size = new System.Drawing.Size(160, 95);
             this.c_doodads_listBox.TabIndex = 11;
             // 
             // panel2
@@ -416,6 +457,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.schrodingers_hk_brush);
+            this.panel1.Controls.Add(this.ironbar_wall_brush);
+            this.panel1.Controls.Add(this.ironbar_door_brush);
+            this.panel1.Controls.Add(this.hallway_anchor_brush);
             this.panel1.Controls.Add(this.shallow_blood_brush);
             this.panel1.Controls.Add(this.destroyed_bookshelf_brush);
             this.panel1.Controls.Add(this.bookshelf_brush);
@@ -450,8 +495,41 @@
             this.panel1.Controls.Add(this.stn_wall_brush);
             this.panel1.Location = new System.Drawing.Point(619, 19);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(212, 528);
+            this.panel1.Size = new System.Drawing.Size(235, 563);
             this.panel1.TabIndex = 0;
+            // 
+            // ironbar_wall_brush
+            // 
+            this.ironbar_wall_brush.Image = ((System.Drawing.Image)(resources.GetObject("ironbar_wall_brush.Image")));
+            this.ironbar_wall_brush.Location = new System.Drawing.Point(184, 54);
+            this.ironbar_wall_brush.Name = "ironbar_wall_brush";
+            this.ironbar_wall_brush.Size = new System.Drawing.Size(32, 32);
+            this.ironbar_wall_brush.TabIndex = 35;
+            this.ironbar_wall_brush.TabStop = false;
+            this.ironbar_wall_brush.Tag = "Ironbar_Wall";
+            this.ironbar_wall_brush.Click += new System.EventHandler(this.doodad_brush_picture_Click);
+            // 
+            // ironbar_door_brush
+            // 
+            this.ironbar_door_brush.Image = ((System.Drawing.Image)(resources.GetObject("ironbar_door_brush.Image")));
+            this.ironbar_door_brush.Location = new System.Drawing.Point(184, 16);
+            this.ironbar_door_brush.Name = "ironbar_door_brush";
+            this.ironbar_door_brush.Size = new System.Drawing.Size(32, 32);
+            this.ironbar_door_brush.TabIndex = 34;
+            this.ironbar_door_brush.TabStop = false;
+            this.ironbar_door_brush.Tag = "Ironbar_Door";
+            this.ironbar_door_brush.Click += new System.EventHandler(this.doodad_brush_picture_Click);
+            // 
+            // hallway_anchor_brush
+            // 
+            this.hallway_anchor_brush.Image = ((System.Drawing.Image)(resources.GetObject("hallway_anchor_brush.Image")));
+            this.hallway_anchor_brush.Location = new System.Drawing.Point(184, 528);
+            this.hallway_anchor_brush.Name = "hallway_anchor_brush";
+            this.hallway_anchor_brush.Size = new System.Drawing.Size(32, 32);
+            this.hallway_anchor_brush.TabIndex = 33;
+            this.hallway_anchor_brush.TabStop = false;
+            this.hallway_anchor_brush.Tag = "HallAnchor";
+            this.hallway_anchor_brush.Click += new System.EventHandler(this.doodad_brush_picture_Click);
             // 
             // shallow_blood_brush
             // 
@@ -489,7 +567,7 @@
             // boneyard_brush
             // 
             this.boneyard_brush.Image = ((System.Drawing.Image)(resources.GetObject("boneyard_brush.Image")));
-            this.boneyard_brush.Location = new System.Drawing.Point(41, 492);
+            this.boneyard_brush.Location = new System.Drawing.Point(41, 528);
             this.boneyard_brush.Name = "boneyard_brush";
             this.boneyard_brush.Size = new System.Drawing.Size(32, 32);
             this.boneyard_brush.TabIndex = 29;
@@ -500,7 +578,7 @@
             // ghost_brush
             // 
             this.ghost_brush.Image = ((System.Drawing.Image)(resources.GetObject("ghost_brush.Image")));
-            this.ghost_brush.Location = new System.Drawing.Point(3, 492);
+            this.ghost_brush.Location = new System.Drawing.Point(3, 528);
             this.ghost_brush.Name = "ghost_brush";
             this.ghost_brush.Size = new System.Drawing.Size(32, 32);
             this.ghost_brush.TabIndex = 28;
@@ -511,7 +589,7 @@
             // hollow_knight_brush
             // 
             this.hollow_knight_brush.Image = ((System.Drawing.Image)(resources.GetObject("hollow_knight_brush.Image")));
-            this.hollow_knight_brush.Location = new System.Drawing.Point(41, 454);
+            this.hollow_knight_brush.Location = new System.Drawing.Point(41, 490);
             this.hollow_knight_brush.Name = "hollow_knight_brush";
             this.hollow_knight_brush.Size = new System.Drawing.Size(32, 32);
             this.hollow_knight_brush.TabIndex = 27;
@@ -522,7 +600,7 @@
             // red_knight_brush
             // 
             this.red_knight_brush.Image = ((System.Drawing.Image)(resources.GetObject("red_knight_brush.Image")));
-            this.red_knight_brush.Location = new System.Drawing.Point(3, 454);
+            this.red_knight_brush.Location = new System.Drawing.Point(3, 490);
             this.red_knight_brush.Name = "red_knight_brush";
             this.red_knight_brush.Size = new System.Drawing.Size(32, 32);
             this.red_knight_brush.TabIndex = 26;
@@ -533,7 +611,7 @@
             // void_wraith_brush
             // 
             this.void_wraith_brush.Image = ((System.Drawing.Image)(resources.GetObject("void_wraith_brush.Image")));
-            this.void_wraith_brush.Location = new System.Drawing.Point(41, 416);
+            this.void_wraith_brush.Location = new System.Drawing.Point(41, 452);
             this.void_wraith_brush.Name = "void_wraith_brush";
             this.void_wraith_brush.Size = new System.Drawing.Size(32, 32);
             this.void_wraith_brush.TabIndex = 25;
@@ -544,7 +622,7 @@
             // zombie_fanatic_brush
             // 
             this.zombie_fanatic_brush.Image = ((System.Drawing.Image)(resources.GetObject("zombie_fanatic_brush.Image")));
-            this.zombie_fanatic_brush.Location = new System.Drawing.Point(3, 416);
+            this.zombie_fanatic_brush.Location = new System.Drawing.Point(3, 452);
             this.zombie_fanatic_brush.Name = "zombie_fanatic_brush";
             this.zombie_fanatic_brush.Size = new System.Drawing.Size(32, 32);
             this.zombie_fanatic_brush.TabIndex = 24;
@@ -555,7 +633,7 @@
             // zombie_brush
             // 
             this.zombie_brush.Image = ((System.Drawing.Image)(resources.GetObject("zombie_brush.Image")));
-            this.zombie_brush.Location = new System.Drawing.Point(41, 378);
+            this.zombie_brush.Location = new System.Drawing.Point(41, 414);
             this.zombie_brush.Name = "zombie_brush";
             this.zombie_brush.Size = new System.Drawing.Size(32, 32);
             this.zombie_brush.TabIndex = 23;
@@ -566,7 +644,7 @@
             // necro_brush
             // 
             this.necro_brush.Image = ((System.Drawing.Image)(resources.GetObject("necro_brush.Image")));
-            this.necro_brush.Location = new System.Drawing.Point(3, 378);
+            this.necro_brush.Location = new System.Drawing.Point(3, 414);
             this.necro_brush.Name = "necro_brush";
             this.necro_brush.Size = new System.Drawing.Size(32, 32);
             this.necro_brush.TabIndex = 22;
@@ -577,7 +655,7 @@
             // gore_wolf_brush
             // 
             this.gore_wolf_brush.Image = ((System.Drawing.Image)(resources.GetObject("gore_wolf_brush.Image")));
-            this.gore_wolf_brush.Location = new System.Drawing.Point(41, 340);
+            this.gore_wolf_brush.Location = new System.Drawing.Point(41, 376);
             this.gore_wolf_brush.Name = "gore_wolf_brush";
             this.gore_wolf_brush.Size = new System.Drawing.Size(32, 32);
             this.gore_wolf_brush.TabIndex = 21;
@@ -588,7 +666,7 @@
             // gore_hound_brush
             // 
             this.gore_hound_brush.Image = ((System.Drawing.Image)(resources.GetObject("gore_hound_brush.Image")));
-            this.gore_hound_brush.Location = new System.Drawing.Point(3, 340);
+            this.gore_hound_brush.Location = new System.Drawing.Point(3, 376);
             this.gore_hound_brush.Name = "gore_hound_brush";
             this.gore_hound_brush.Size = new System.Drawing.Size(32, 32);
             this.gore_hound_brush.TabIndex = 20;
@@ -599,7 +677,7 @@
             // skel_brush
             // 
             this.skel_brush.Image = ((System.Drawing.Image)(resources.GetObject("skel_brush.Image")));
-            this.skel_brush.Location = new System.Drawing.Point(41, 302);
+            this.skel_brush.Location = new System.Drawing.Point(41, 338);
             this.skel_brush.Name = "skel_brush";
             this.skel_brush.Size = new System.Drawing.Size(32, 32);
             this.skel_brush.TabIndex = 19;
@@ -610,7 +688,7 @@
             // arm_skel_brush
             // 
             this.arm_skel_brush.Image = ((System.Drawing.Image)(resources.GetObject("arm_skel_brush.Image")));
-            this.arm_skel_brush.Location = new System.Drawing.Point(3, 302);
+            this.arm_skel_brush.Location = new System.Drawing.Point(3, 338);
             this.arm_skel_brush.Name = "arm_skel_brush";
             this.arm_skel_brush.Size = new System.Drawing.Size(32, 32);
             this.arm_skel_brush.TabIndex = 18;
@@ -621,7 +699,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 286);
+            this.label8.Location = new System.Drawing.Point(3, 322);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 13);
             this.label8.TabIndex = 17;
@@ -821,11 +899,22 @@
             0,
             0});
             // 
+            // schrodingers_hk_brush
+            // 
+            this.schrodingers_hk_brush.Image = ((System.Drawing.Image)(resources.GetObject("schrodingers_hk_brush.Image")));
+            this.schrodingers_hk_brush.Location = new System.Drawing.Point(79, 490);
+            this.schrodingers_hk_brush.Name = "schrodingers_hk_brush";
+            this.schrodingers_hk_brush.Size = new System.Drawing.Size(32, 32);
+            this.schrodingers_hk_brush.TabIndex = 36;
+            this.schrodingers_hk_brush.TabStop = false;
+            this.schrodingers_hk_brush.Tag = "Schrodingers_HK";
+            this.schrodingers_hk_brush.Click += new System.EventHandler(this.monster_brush_picture_Click);
+            // 
             // DungeonRoomEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(861, 567);
+            this.ClientSize = new System.Drawing.Size(884, 608);
             this.Controls.Add(this.groupBox1);
             this.Name = "DungeonRoomEditorForm";
             this.Text = "DungeonRoomEditorForm";
@@ -841,6 +930,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ironbar_wall_brush)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ironbar_door_brush)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hallway_anchor_brush)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shallow_blood_brush)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.destroyed_bookshelf_brush)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookshelf_brush)).EndInit();
@@ -871,6 +963,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.stn_floor_brush)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stn_wall_brush)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.doodad_chance_numeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.schrodingers_hk_brush)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -938,5 +1031,12 @@
         private System.Windows.Forms.PictureBox shallow_blood_brush;
         private System.Windows.Forms.PictureBox destroyed_bookshelf_brush;
         private System.Windows.Forms.PictureBox bookshelf_brush;
+        private System.Windows.Forms.CheckBox OverlapChkBox;
+        private System.Windows.Forms.ListBox c_hallanchor_listbox;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.PictureBox hallway_anchor_brush;
+        private System.Windows.Forms.PictureBox ironbar_wall_brush;
+        private System.Windows.Forms.PictureBox ironbar_door_brush;
+        private System.Windows.Forms.PictureBox schrodingers_hk_brush;
     }
 }
