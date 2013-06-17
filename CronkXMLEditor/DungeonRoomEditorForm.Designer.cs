@@ -59,6 +59,15 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.mainPictureBox = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.schrodingers_hk_brush = new System.Windows.Forms.PictureBox();
             this.ironbar_wall_brush = new System.Windows.Forms.PictureBox();
             this.ironbar_door_brush = new System.Windows.Forms.PictureBox();
             this.hallway_anchor_brush = new System.Windows.Forms.PictureBox();
@@ -96,7 +105,6 @@
             this.stn_wall_brush = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.doodad_chance_numeric = new System.Windows.Forms.NumericUpDown();
-            this.schrodingers_hk_brush = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.room_gold_numeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.floorx_numeric)).BeginInit();
@@ -107,6 +115,14 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.schrodingers_hk_brush)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ironbar_wall_brush)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ironbar_door_brush)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hallway_anchor_brush)).BeginInit();
@@ -140,7 +156,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.stn_floor_brush)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stn_wall_brush)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doodad_chance_numeric)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.schrodingers_hk_brush)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -457,6 +472,14 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pictureBox7);
+            this.panel1.Controls.Add(this.pictureBox6);
+            this.panel1.Controls.Add(this.pictureBox5);
+            this.panel1.Controls.Add(this.pictureBox4);
+            this.panel1.Controls.Add(this.pictureBox3);
+            this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.schrodingers_hk_brush);
             this.panel1.Controls.Add(this.ironbar_wall_brush);
             this.panel1.Controls.Add(this.ironbar_door_brush);
@@ -498,6 +521,103 @@
             this.panel1.Size = new System.Drawing.Size(235, 563);
             this.panel1.TabIndex = 0;
             // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::CronkXMLEditor.Properties.Resources.Zombie_Family;
+            this.pictureBox7.Location = new System.Drawing.Point(146, 452);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox7.TabIndex = 44;
+            this.pictureBox7.TabStop = false;
+            this.pictureBox7.Tag = "Zombie";
+            this.pictureBox7.Click += new System.EventHandler(this.monster_family_brush_picture_Click);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::CronkXMLEditor.Properties.Resources.SpiritKnight_Family;
+            this.pictureBox6.Location = new System.Drawing.Point(108, 452);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox6.TabIndex = 43;
+            this.pictureBox6.TabStop = false;
+            this.pictureBox6.Tag = "SpiritKnight";
+            this.pictureBox6.Click += new System.EventHandler(this.monster_family_brush_picture_Click);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::CronkXMLEditor.Properties.Resources.Spirit_Family;
+            this.pictureBox5.Location = new System.Drawing.Point(146, 414);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox5.TabIndex = 42;
+            this.pictureBox5.TabStop = false;
+            this.pictureBox5.Tag = "Spirit";
+            this.pictureBox5.Click += new System.EventHandler(this.monster_family_brush_picture_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::CronkXMLEditor.Properties.Resources.Skeleton_Family;
+            this.pictureBox4.Location = new System.Drawing.Point(108, 414);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox4.TabIndex = 41;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Tag = "Skeleton";
+            this.pictureBox4.Click += new System.EventHandler(this.monster_family_brush_picture_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::CronkXMLEditor.Properties.Resources.Necro_Family;
+            this.pictureBox3.Location = new System.Drawing.Point(146, 376);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox3.TabIndex = 40;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Tag = "Necromancer";
+            this.pictureBox3.Click += new System.EventHandler(this.monster_family_brush_picture_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::CronkXMLEditor.Properties.Resources.Ghost_Family;
+            this.pictureBox2.Location = new System.Drawing.Point(146, 338);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox2.TabIndex = 39;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Tag = "Ghost";
+            this.pictureBox2.Click += new System.EventHandler(this.monster_family_brush_picture_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CronkXMLEditor.Properties.Resources.Goredog_Family;
+            this.pictureBox1.Location = new System.Drawing.Point(108, 376);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.TabIndex = 38;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Tag = "Goredog";
+            this.pictureBox1.Click += new System.EventHandler(this.monster_family_brush_picture_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(105, 322);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(88, 13);
+            this.label16.TabIndex = 37;
+            this.label16.Text = "Monster Families:";
+            // 
+            // schrodingers_hk_brush
+            // 
+            this.schrodingers_hk_brush.Image = ((System.Drawing.Image)(resources.GetObject("schrodingers_hk_brush.Image")));
+            this.schrodingers_hk_brush.Location = new System.Drawing.Point(108, 338);
+            this.schrodingers_hk_brush.Name = "schrodingers_hk_brush";
+            this.schrodingers_hk_brush.Size = new System.Drawing.Size(32, 32);
+            this.schrodingers_hk_brush.TabIndex = 36;
+            this.schrodingers_hk_brush.TabStop = false;
+            this.schrodingers_hk_brush.Tag = "Schrodingers_HK";
+            this.schrodingers_hk_brush.Click += new System.EventHandler(this.monster_brush_picture_Click);
+            // 
             // ironbar_wall_brush
             // 
             this.ironbar_wall_brush.Image = ((System.Drawing.Image)(resources.GetObject("ironbar_wall_brush.Image")));
@@ -523,7 +643,7 @@
             // hallway_anchor_brush
             // 
             this.hallway_anchor_brush.Image = ((System.Drawing.Image)(resources.GetObject("hallway_anchor_brush.Image")));
-            this.hallway_anchor_brush.Location = new System.Drawing.Point(184, 528);
+            this.hallway_anchor_brush.Location = new System.Drawing.Point(108, 168);
             this.hallway_anchor_brush.Name = "hallway_anchor_brush";
             this.hallway_anchor_brush.Size = new System.Drawing.Size(32, 32);
             this.hallway_anchor_brush.TabIndex = 33;
@@ -899,17 +1019,6 @@
             0,
             0});
             // 
-            // schrodingers_hk_brush
-            // 
-            this.schrodingers_hk_brush.Image = ((System.Drawing.Image)(resources.GetObject("schrodingers_hk_brush.Image")));
-            this.schrodingers_hk_brush.Location = new System.Drawing.Point(79, 490);
-            this.schrodingers_hk_brush.Name = "schrodingers_hk_brush";
-            this.schrodingers_hk_brush.Size = new System.Drawing.Size(32, 32);
-            this.schrodingers_hk_brush.TabIndex = 36;
-            this.schrodingers_hk_brush.TabStop = false;
-            this.schrodingers_hk_brush.Tag = "Schrodingers_HK";
-            this.schrodingers_hk_brush.Click += new System.EventHandler(this.monster_brush_picture_Click);
-            // 
             // DungeonRoomEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -930,6 +1039,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.schrodingers_hk_brush)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ironbar_wall_brush)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ironbar_door_brush)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hallway_anchor_brush)).EndInit();
@@ -963,7 +1080,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.stn_floor_brush)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stn_wall_brush)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.doodad_chance_numeric)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.schrodingers_hk_brush)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1038,5 +1154,13 @@
         private System.Windows.Forms.PictureBox ironbar_wall_brush;
         private System.Windows.Forms.PictureBox ironbar_door_brush;
         private System.Windows.Forms.PictureBox schrodingers_hk_brush;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label16;
     }
 }

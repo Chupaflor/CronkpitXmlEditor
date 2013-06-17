@@ -34,6 +34,11 @@ namespace CronkXMLEditor
         List<monster_type> monsters;
         List<matrix_coord> monster_coords;
         List<int> monster_appearance_chances;
+        //Monster families
+        string c_monster_family_name;
+        List<monster_family_type> monster_families;
+        List<matrix_coord> m_family_coords;
+        List<int> m_family_appearance_chances;
 
         //Brush
         brush_mode current_brush_mode;
@@ -46,6 +51,9 @@ namespace CronkXMLEditor
         //Monster brush control variables
         monster_type current_monster;
         Image current_monster_img;
+        //Monster Family brush control variables
+        monster_family_type c_monster_family;
+        Image current_m_family_img;
 
         int roomheight;
         int roomwidth;
@@ -64,13 +72,18 @@ namespace CronkXMLEditor
 
         private enum brush_mode
         {
-            Tiles, Doodads, Monsters, None
+            Tiles, Doodads, Monsters, Monster_Family, None
         };
 
         private enum monster_type
         {
             Zombie, Zombie_Fanatic, Gore_Hound, Gore_Wolf, Skeleton, Armored_Skeleton, Ghost,
             Void_Wraith, Necromancer, Hollow_Knight, Red_Knight, Boneyard, Schrodingers_HK
+        };
+
+        private enum monster_family_type
+        {
+            Skeleton, Large_Undead, Mimic, Goredog, Grendel, Ghost, Necromancer, SpiritKnight, Spirit, Zombie
         };
 
         public DungeonRoomEditorForm(ref XmlDocument general_rooms, string general_paths)
@@ -90,6 +103,10 @@ namespace CronkXMLEditor
             monster_coords = new List<matrix_coord>();
             monster_appearance_chances = new List<int>();
 
+            monster_families = new List<monster_family_type>();
+            m_family_coords = new List<matrix_coord>();
+            m_family_appearance_chances = new List<int>();
+
             general_room_list = general_rooms;
             general_room_path = general_paths;
 
@@ -108,17 +125,23 @@ namespace CronkXMLEditor
             int x_matrix_position = x / 32;
             int y_matrix_position = y / 32;
 
+            Rectangle drawing_rect = new Rectangle(x_matrix_position * 32, y_matrix_position * 32, 32, 32);
+            //Make sure it's within the desired coordinate area.
             if (x_matrix_position < roomwidth && y_matrix_position < roomheight)
             {
+                //Left click.
                 if (e.Button == System.Windows.Forms.MouseButtons.Left)
                 {
                     matrix_coord m_coord = new matrix_coord(x_matrix_position, y_matrix_position);
 
+                    //Conditional branch depending on brush mode
+                    //Tiles
                     if (current_brush_mode == brush_mode.Tiles)
                     {
                         roomMatrix[x_matrix_position, y_matrix_position] = current_tile;
-                        roomGraphics.DrawImage(current_tile_img, new Rectangle(x_matrix_position * 32, y_matrix_position * 32, 32, 32));
+                        roomGraphics.DrawImage(current_tile_img, drawing_rect);
                     }
+                    //Doodads
                     else if (current_brush_mode == brush_mode.Doodads)
                     {
                         if (current_doodad != doodad_type.HallAnchor)
@@ -133,21 +156,32 @@ namespace CronkXMLEditor
                             hall_anchors.Add(m_coord);
                             c_hallanchor_listbox.Items.Add(m_coord.ToString());
                         }
-                        roomGraphics.DrawImage(current_doodad_img, new Rectangle(x_matrix_position * 32, y_matrix_position * 32, 32, 32));
+                        roomGraphics.DrawImage(current_doodad_img, drawing_rect);
                     }
+                    //Monsters
                     else if (current_brush_mode == brush_mode.Monsters)
                     {
                         monsters.Add(current_monster);
                         monster_coords.Add(m_coord);
                         monster_appearance_chances.Add((int)doodad_chance_numeric.Value);
                         c_monster_listbox.Items.Add(c_monster_name + " " + m_coord.ToString() + " " + doodad_chance_numeric.Value.ToString() + "%");
-                        roomGraphics.DrawImage(current_monster_img, new Rectangle(x_matrix_position * 32, y_matrix_position * 32, 32, 32));
+                        roomGraphics.DrawImage(current_monster_img, drawing_rect);
+                    }
+                    //Monster families
+                    else if (current_brush_mode == brush_mode.Monster_Family)
+                    {
+                        monster_families.Add(c_monster_family);
+                        m_family_coords.Add(m_coord);
+                        m_family_appearance_chances.Add((int)doodad_chance_numeric.Value);
+                        c_monster_listbox.Items.Add(c_monster_family.ToString() + " " + m_coord.ToString() + " " + doodad_chance_numeric.Value.ToString() + "%");
+                        roomGraphics.DrawImage(current_m_family_img, drawing_rect);
                     }
                 }
+                //Right click.
                 else
                 {
                     roomMatrix[x_matrix_position, y_matrix_position] = current_tile;
-                    roomGraphics.DrawImage(void_tile_brush.Image, new Rectangle(x_matrix_position * 32, y_matrix_position * 32, 32, 32));
+                    roomGraphics.DrawImage(void_tile_brush.Image, drawing_rect);
 
                     int original_size = doodads.Count;
                     for (int i = 0; i < original_size; i++)
@@ -340,60 +374,90 @@ namespace CronkXMLEditor
             PictureBox pb = (PictureBox)sender;
             c_monster_name = pb.Tag.ToString();
             current_brush_mode = brush_mode.Monsters;
+            current_monster_img = pb.Image;
 
             switch (c_monster_name)
             {
                 case "Zombie":
                     current_monster = monster_type.Zombie;
-                    current_monster_img = zombie_brush.Image;
                     break;
                 case "ZombieFanatic":
                     current_monster = monster_type.Zombie_Fanatic;
-                    current_monster_img = zombie_fanatic_brush.Image;
                     break;
                 case "GoreHound":
                     current_monster = monster_type.Gore_Hound;
-                    current_monster_img = gore_hound_brush.Image;
                     break;
                 case "GoreWolf":
                     current_monster = monster_type.Gore_Wolf;
-                    current_monster_img = gore_wolf_brush.Image;
                     break;
                 case "Necromancer":
                     current_monster = monster_type.Necromancer;
-                    current_monster_img = necro_brush.Image;
                     break;
                 case "Boneyard":
                     current_monster = monster_type.Boneyard;
-                    current_monster_img = boneyard_brush.Image;
                     break;
                 case "ArmoredSkel":
                     current_monster = monster_type.Armored_Skeleton;
-                    current_monster_img = arm_skel_brush.Image;
                     break;
                 case "Skel":
                     current_monster = monster_type.Skeleton;
-                    current_monster_img = skel_brush.Image;
                     break;
                 case "VoidWraith":
                     current_monster = monster_type.Void_Wraith;
-                    current_monster_img = void_wraith_brush.Image;
                     break;
                 case "Ghost":
                     current_monster = monster_type.Ghost;
-                    current_monster_img = ghost_brush.Image;
                     break;
                 case "RedKnight":
                     current_monster = monster_type.Red_Knight;
-                    current_monster_img = red_knight_brush.Image;
                     break;
                 case "HollowKnight":
                     current_monster = monster_type.Hollow_Knight;
-                    current_monster_img = hollow_knight_brush.Image;
                     break;
                 case "Schrodingers_HK":
                     current_monster = monster_type.Schrodingers_HK;
-                    current_monster_img = schrodingers_hk_brush.Image;
+                    break;
+            }
+        }
+
+        private void monster_family_brush_picture_Click(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            c_monster_family_name = pb.Tag.ToString();
+            current_brush_mode = brush_mode.Monster_Family;
+            current_m_family_img = pb.Image;
+
+            switch (c_monster_family_name)
+            {
+                case "Skeleton":
+                    c_monster_family = monster_family_type.Skeleton;
+                    break;
+                case "Large_Undead":
+                    c_monster_family = monster_family_type.Large_Undead;
+                    break;
+                case "Mimic":
+                    c_monster_family = monster_family_type.Mimic;
+                    break;
+                case "Goredog":
+                    c_monster_family = monster_family_type.Goredog;
+                    break;
+                case "Grendel":
+                    c_monster_family = monster_family_type.Grendel;
+                    break;
+                case "Ghost":
+                    c_monster_family = monster_family_type.Ghost;
+                    break;
+                case "Necromancer":
+                    c_monster_family = monster_family_type.Necromancer;
+                    break;
+                case "SpiritKnight":
+                    c_monster_family = monster_family_type.SpiritKnight;
+                    break;
+                case "Spirit":
+                    c_monster_family = monster_family_type.Spirit;
+                    break;
+                case "Zombie":
+                    c_monster_family = monster_family_type.Zombie;
                     break;
             }
         }
@@ -470,6 +534,30 @@ namespace CronkXMLEditor
                 roomDoodadChancesNode.AppendChild(currentDoodadChanceNode);
             }
 
+            //Monster families
+            XmlNode roomMonFamiliesNode = target_doc.CreateElement("Monster_Families");
+            for (int i = 0; i < monster_families.Count; i++)
+            {
+                XmlNode cMonsterFamilyNode = target_doc.CreateElement("Item");
+                cMonsterFamilyNode.InnerText = monster_families[i].ToString();
+                roomMonFamiliesNode.AppendChild(cMonsterFamilyNode);
+            }
+            XmlNode roomFamilyCoordNode = target_doc.CreateElement("Monster_Family_Coordinates");
+            for (int i = 0; i < m_family_coords.Count; i++)
+            {
+                XmlNode cFamilyCoordNode = target_doc.CreateElement("Item");
+                cFamilyCoordNode.InnerText =  m_family_coords[i].compressedString();
+                roomFamilyCoordNode.AppendChild(cFamilyCoordNode);
+            }
+            XmlNode roomMonFamilyChance = target_doc.CreateElement("Monster_Family_Chances");
+            for (int i = 0; i < m_family_appearance_chances.Count; i++)
+            {
+                XmlNode cFamilyChanceNode = target_doc.CreateElement("Item");
+                cFamilyChanceNode.InnerText = m_family_appearance_chances[i].ToString();
+                roomMonFamilyChance.AppendChild(cFamilyChanceNode);
+            }
+
+            //Monsters
             XmlNode roomMonstersNode = target_doc.CreateElement("Room_Monsters");
             for (int i = 0; i < monsters.Count; i++)
             {
@@ -503,6 +591,9 @@ namespace CronkXMLEditor
             roomNode.AppendChild(roomDoodadsNode);
             roomNode.AppendChild(roomDoodadCoordsNode);
             roomNode.AppendChild(roomDoodadChancesNode);
+            roomNode.AppendChild(roomMonFamiliesNode);
+            roomNode.AppendChild(roomFamilyCoordNode);
+            roomNode.AppendChild(roomMonFamilyChance);
             roomNode.AppendChild(roomMonstersNode);
             roomNode.AppendChild(roomMonstersCoordsNode);
             roomNode.AppendChild(roomMonstersChancesNode);
