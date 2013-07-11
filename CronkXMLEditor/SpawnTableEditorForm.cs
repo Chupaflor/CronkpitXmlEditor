@@ -17,7 +17,7 @@ namespace CronkXMLEditor
         public enum Monster_Type
         {
             Armored_Skeleton, Boneyard, CorpseMimic, Ghost, GoldMimic, Grendel, GoreHound, GoreWolf, HollowKnight, Necromancer,
-            RedKnight, Skeleton, VoidWraith, Zombie, ZombieFanatic
+            RedKnight, Skeleton, VoidWraith, Zombie, ZombieFanatic, LesserRevenant, WereGoreHound, Gangrenous_Shambler, Rotting_Amalgam
         };
         public enum Dungeons { Necropolis };
 
@@ -62,6 +62,7 @@ namespace CronkXMLEditor
 
             //All Large_Undead family monsters
             monster_family_assocs.Add(new KeyValuePair<Monster_Family, Monster_Type>(Monster_Family.Large_Undead, Monster_Type.Boneyard));
+            monster_family_assocs.Add(new KeyValuePair<Monster_Family, Monster_Type>(Monster_Family.Large_Undead, Monster_Type.Gangrenous_Shambler));
 
             //All Mimic family monsters
             monster_family_assocs.Add(new KeyValuePair<Monster_Family, Monster_Type>(Monster_Family.Mimic, Monster_Type.CorpseMimic));
@@ -70,6 +71,7 @@ namespace CronkXMLEditor
             //All Goredog family monsters
             monster_family_assocs.Add(new KeyValuePair<Monster_Family, Monster_Type>(Monster_Family.Goredog, Monster_Type.GoreHound));
             monster_family_assocs.Add(new KeyValuePair<Monster_Family, Monster_Type>(Monster_Family.Goredog, Monster_Type.GoreWolf));
+            monster_family_assocs.Add(new KeyValuePair<Monster_Family, Monster_Type>(Monster_Family.Goredog, Monster_Type.WereGoreHound));
 
             //All Grendel family monsters
             monster_family_assocs.Add(new KeyValuePair<Monster_Family, Monster_Type>(Monster_Family.Grendel, Monster_Type.Grendel));
@@ -90,15 +92,19 @@ namespace CronkXMLEditor
             //All Zombie family monsters
             monster_family_assocs.Add(new KeyValuePair<Monster_Family, Monster_Type>(Monster_Family.Zombie, Monster_Type.Zombie));
             monster_family_assocs.Add(new KeyValuePair<Monster_Family, Monster_Type>(Monster_Family.Zombie, Monster_Type.ZombieFanatic));
+            monster_family_assocs.Add(new KeyValuePair<Monster_Family, Monster_Type>(Monster_Family.Zombie, Monster_Type.LesserRevenant));
+            monster_family_assocs.Add(new KeyValuePair<Monster_Family, Monster_Type>(Monster_Family.Zombie, Monster_Type.Rotting_Amalgam));
 
             //Build the list for monsters
             single_monster_list.Add(Monster_Type.Armored_Skeleton);
             single_monster_list.Add(Monster_Type.Boneyard);
+            single_monster_list.Add(Monster_Type.Gangrenous_Shambler);
             single_monster_list.Add(Monster_Type.CorpseMimic);
             single_monster_list.Add(Monster_Type.Ghost);
             single_monster_list.Add(Monster_Type.GoldMimic);
             single_monster_list.Add(Monster_Type.GoreHound);
             single_monster_list.Add(Monster_Type.GoreWolf);
+            single_monster_list.Add(Monster_Type.WereGoreHound);
             single_monster_list.Add(Monster_Type.HollowKnight);
             single_monster_list.Add(Monster_Type.Necromancer);
             single_monster_list.Add(Monster_Type.RedKnight);
@@ -106,6 +112,8 @@ namespace CronkXMLEditor
             single_monster_list.Add(Monster_Type.VoidWraith);
             single_monster_list.Add(Monster_Type.Zombie);
             single_monster_list.Add(Monster_Type.ZombieFanatic);
+            single_monster_list.Add(Monster_Type.LesserRevenant);
+            single_monster_list.Add(Monster_Type.Rotting_Amalgam);
 
             //Build the list for families
             monster_family_list.Add(Monster_Family.Skeleton);

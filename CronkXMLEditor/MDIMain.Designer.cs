@@ -42,6 +42,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cascadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.featureSpecifierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,6 +80,7 @@
             this.itemWindowToolStripMenuItem,
             this.classDescriptionEditorToolStripMenuItem,
             this.dungeonThemeDesignerToolStripMenuItem,
+            this.featureSpecifierToolStripMenuItem,
             this.dungeonRoomDesignerToolStripMenuItem,
             this.shopPromptsToolStripMenuItem,
             this.spawnTableEditorToolStripMenuItem,
@@ -142,6 +144,13 @@
             this.cascadeToolStripMenuItem.Text = "&Cascade";
             this.cascadeToolStripMenuItem.Click += new System.EventHandler(this.CascadeToolStripMenuItem_Click);
             // 
+            // featureSpecifierToolStripMenuItem
+            // 
+            this.featureSpecifierToolStripMenuItem.Name = "featureSpecifierToolStripMenuItem";
+            this.featureSpecifierToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.featureSpecifierToolStripMenuItem.Text = "&Feature Specifier";
+            this.featureSpecifierToolStripMenuItem.Click += new System.EventHandler(this.featureSpecifierToolStripMenuItem_Click);
+            // 
             // MDIMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,6 +185,7 @@
         private System.Windows.Forms.ToolStripMenuItem dungeonThemeDesignerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dungeonRoomDesignerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem spawnTableEditorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem featureSpecifierToolStripMenuItem;
     }
 }
 

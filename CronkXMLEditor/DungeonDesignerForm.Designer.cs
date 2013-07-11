@@ -44,6 +44,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dungeon_listbox = new System.Windows.Forms.ListBox();
+            this.random_rooms_chkbox = new System.Windows.Forms.CheckBox();
+            this.specific_features_chkbox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.roomQuant_numeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.floor_numeric)).BeginInit();
@@ -51,6 +53,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.specific_features_chkbox);
+            this.groupBox1.Controls.Add(this.random_rooms_chkbox);
             this.groupBox1.Controls.Add(this.specific_rooms_chkbox);
             this.groupBox1.Controls.Add(this.clear_btn);
             this.groupBox1.Controls.Add(this.append_btn);
@@ -135,7 +139,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(129, 130);
+            this.label4.Location = new System.Drawing.Point(129, 91);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 13);
             this.label4.TabIndex = 20;
@@ -182,7 +186,7 @@
             // 
             // roomQuant_numeric
             // 
-            this.roomQuant_numeric.Location = new System.Drawing.Point(132, 146);
+            this.roomQuant_numeric.Location = new System.Drawing.Point(132, 107);
             this.roomQuant_numeric.Name = "roomQuant_numeric";
             this.roomQuant_numeric.Size = new System.Drawing.Size(120, 20);
             this.roomQuant_numeric.TabIndex = 16;
@@ -225,6 +229,26 @@
             this.dungeon_listbox.Size = new System.Drawing.Size(120, 95);
             this.dungeon_listbox.TabIndex = 12;
             // 
+            // random_rooms_chkbox
+            // 
+            this.random_rooms_chkbox.AutoSize = true;
+            this.random_rooms_chkbox.Location = new System.Drawing.Point(132, 172);
+            this.random_rooms_chkbox.Name = "random_rooms_chkbox";
+            this.random_rooms_chkbox.Size = new System.Drawing.Size(102, 17);
+            this.random_rooms_chkbox.TabIndex = 27;
+            this.random_rooms_chkbox.Text = "Random Rooms";
+            this.random_rooms_chkbox.UseVisualStyleBackColor = true;
+            // 
+            // specific_features_chkbox
+            // 
+            this.specific_features_chkbox.AutoSize = true;
+            this.specific_features_chkbox.Location = new System.Drawing.Point(132, 149);
+            this.specific_features_chkbox.Name = "specific_features_chkbox";
+            this.specific_features_chkbox.Size = new System.Drawing.Size(108, 17);
+            this.specific_features_chkbox.TabIndex = 28;
+            this.specific_features_chkbox.Text = "Specific Features";
+            this.specific_features_chkbox.UseVisualStyleBackColor = true;
+            // 
             // DungeonDesignerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,6 +283,8 @@
         private System.Windows.Forms.Button append_btn;
         private System.Windows.Forms.Button clear_btn;
         private System.Windows.Forms.CheckBox specific_rooms_chkbox;
+        private System.Windows.Forms.CheckBox specific_features_chkbox;
+        private System.Windows.Forms.CheckBox random_rooms_chkbox;
 
     }
 }

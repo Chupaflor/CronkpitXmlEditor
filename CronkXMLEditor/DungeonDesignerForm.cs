@@ -102,10 +102,11 @@ namespace CronkXMLEditor
                     roomListNode.AppendChild(next_item);
                 }
                 XmlNode specificRoomNode = target_document.CreateElement("SpecificRooms");
-                if (specific_rooms_chkbox.Checked)
-                    specificRoomNode.InnerText = "Yes";
-                else
-                    specificRoomNode.InnerText = "No";
+                specificRoomNode.InnerText = specific_rooms_chkbox.Checked.ToString();
+                XmlNode randomRoomNode = target_document.CreateElement("RandomRooms");
+                randomRoomNode.InnerText = random_rooms_chkbox.Checked.ToString();
+                XmlNode specificFeatureNode = target_document.CreateElement("SpecificFeatures");
+                specificFeatureNode.InnerText = specific_features_chkbox.Checked.ToString();
 
                 XmlNode floorConfigNode = target_document.CreateElement("Item");
                 floorConfigNode.AppendChild(floorNumberNode);

@@ -24,6 +24,8 @@ namespace CronkXMLEditor
         tile_type[,] roomMatrix;
         //Anchors
         List<matrix_coord> hall_anchors;
+        //Boss Spawns
+        List<matrix_coord> boss_spawns;
         //Doodads
         string c_doodad_name;
         List<doodad_type> doodads;
@@ -61,13 +63,14 @@ namespace CronkXMLEditor
         private enum tile_type
         {
             Stone_Floor, Stone_Wall, Dirt_Floor, Dirt_Wall, Gravel,
-            Shallow_Water, Deep_Water, Shallow_Blood, Deep_Blood, Void
+            Shallow_Water, Deep_Water, Shallow_Blood, Deep_Blood, Void,
+            Shallow_Sewage, Deep_Sewage, Entrance, Exit, Rubble_Floor
         };
 
         private enum doodad_type
         {
             Blood_Splatter, Armor_Suit, Destroyed_Armorsuit, Altar, Cage, Corpse_Pile,
-            Bookshelf, Destroyed_Bookshelf, HallAnchor, Ironbar_Wall, Ironbar_Door
+            Bookshelf, Destroyed_Bookshelf, HallAnchor, Ironbar_Wall, Ironbar_Door, Boss_Spawn
         };
 
         private enum brush_mode
@@ -77,8 +80,8 @@ namespace CronkXMLEditor
 
         private enum monster_type
         {
-            Zombie, Zombie_Fanatic, Gore_Hound, Gore_Wolf, Skeleton, Armored_Skeleton, Ghost,
-            Void_Wraith, Necromancer, Hollow_Knight, Red_Knight, Boneyard, Schrodingers_HK
+            Armored_Skeleton, Boneyard, Gangrenous_Shambler, CorpseMimic, Ghost, GoldMimic, Grendel, GoreHound, GoreWolf, HollowKnight,
+            Necromancer, RedKnight, Skeleton, VoidWraith, Zombie, ZombieFanatic, LesserRevenant, Rotting_Amalgam, WereGoreHound, Schrodingers_HK
         };
 
         private enum monster_family_type
@@ -94,6 +97,7 @@ namespace CronkXMLEditor
             roomheight = 5;
 
             hall_anchors = new List<matrix_coord>();
+            boss_spawns = new List<matrix_coord>();
 
             doodads = new List<doodad_type>();
             doodad_coords = new List<matrix_coord>();
@@ -144,18 +148,23 @@ namespace CronkXMLEditor
                     //Doodads
                     else if (current_brush_mode == brush_mode.Doodads)
                     {
-                        if (current_doodad != doodad_type.HallAnchor)
+                        if (current_doodad == doodad_type.HallAnchor)
+                        {
+                            hall_anchors.Add(m_coord);
+                            c_hallanchor_listbox.Items.Add(m_coord.ToString());
+                        }
+                        else if (current_doodad == doodad_type.Boss_Spawn)
+                        {
+                            boss_spawns.Add(m_coord);
+                        }
+                        else
                         {
                             doodads.Add(current_doodad);
                             doodad_coords.Add(m_coord);
                             doodad_appearance_chances.Add((int)doodad_chance_numeric.Value);
                             c_doodads_listBox.Items.Add(c_doodad_name + " " + m_coord.ToString() + " " + doodad_chance_numeric.Value.ToString() + "%");
                         }
-                        else
-                        {
-                            hall_anchors.Add(m_coord);
-                            c_hallanchor_listbox.Items.Add(m_coord.ToString());
-                        }
+
                         roomGraphics.DrawImage(current_doodad_img, drawing_rect);
                     }
                     //Monsters
@@ -256,6 +265,12 @@ namespace CronkXMLEditor
             monster_appearance_chances.Clear();
             c_monster_listbox.Items.Clear();
 
+            monster_families.Clear();
+            m_family_coords.Clear();
+            m_family_appearance_chances.Clear();
+
+            boss_spawns.Clear();
+
             for (int x = 0; x < roomwidth; x++)
                 for (int y = 0; y < roomheight; y++)
                 {
@@ -272,44 +287,51 @@ namespace CronkXMLEditor
             PictureBox pb = (PictureBox)sender;
             string tagData = pb.Tag.ToString();
             current_brush_mode = brush_mode.Tiles;
+            current_tile_img = pb.Image;
 
             switch (tagData)
             {
                 case "StoneFloor":
                     current_tile = tile_type.Stone_Floor;
-                    current_tile_img = stn_floor_brush.Image;
                     break;
                 case "StoneWall":
                     current_tile = tile_type.Stone_Wall;
-                    current_tile_img = stn_wall_brush.Image;
                     break;
                 case "Gravel":
                     current_tile = tile_type.Gravel;
-                    current_tile_img = gravel_brush.Image;
                     break;
                 case "DirtFloor":
                     current_tile = tile_type.Dirt_Floor;
-                    current_tile_img = dirt_floor_brush.Image;
                     break;
                 case "DirtWall":
                     current_tile = tile_type.Dirt_Wall;
-                    current_tile_img = dirt_wall_brush.Image;
                     break;
                 case "ShallowWater":
                     current_tile = tile_type.Shallow_Water;
-                    current_tile_img = shallow_water_brush.Image;
                     break;
                 case "DeepWater":
                     current_tile = tile_type.Deep_Water;
-                    current_tile_img = deep_water_brush.Image;
                     break;
                 case "ShallowBlood":
                     current_tile = tile_type.Shallow_Blood;
-                    current_tile_img = shallow_blood_brush.Image;
                     break;
                 case "VoidTile":
                     current_tile = tile_type.Void;
-                    current_tile_img = void_tile_brush.Image;
+                    break;
+                case "Shallow_Sewage":
+                    current_tile = tile_type.Shallow_Sewage;
+                    break;
+                case "Deep_Sewage":
+                    current_tile = tile_type.Deep_Sewage;
+                    break;
+                case "Entrance":
+                    current_tile = tile_type.Entrance;
+                    break;
+                case "Exit":
+                    current_tile = tile_type.Exit;
+                    break;
+                case "RubbleFloor":
+                    current_tile = tile_type.Rubble_Floor;
                     break;
             }
         }
@@ -319,52 +341,45 @@ namespace CronkXMLEditor
             PictureBox pb = (PictureBox)sender;
             c_doodad_name = pb.Tag.ToString();
             current_brush_mode = brush_mode.Doodads;
+            current_doodad_img = pb.Image;
 
             switch (c_doodad_name)
             {
                 case "BloodSplat":
                     current_doodad = doodad_type.Blood_Splatter;
-                    current_doodad_img = blood_splatter_brush.Image;
                     break;
                 case "Armor":
                     current_doodad = doodad_type.Armor_Suit;
-                    current_doodad_img = armor_suit_brush.Image;
                     break;
                 case "DestroyedArmor":
                     current_doodad = doodad_type.Destroyed_Armorsuit;
-                    current_doodad_img = destroyed_armor_brush.Image;
                     break;
                 case "Cage":
                     current_doodad = doodad_type.Cage;
-                    current_doodad_img = cage_brush.Image;
                     break;
                 case "Altar":
                     current_doodad = doodad_type.Altar;
-                    current_doodad_img = altar_brush.Image;
                     break;
                 case "CorpsePile":
                     current_doodad = doodad_type.Corpse_Pile;
-                    current_doodad_img = corpse_pile_brush.Image;
                     break;
                 case "Bookshelf":
                     current_doodad = doodad_type.Bookshelf;
-                    current_doodad_img = bookshelf_brush.Image;
                     break;
                 case "DestroyedBookshelf":
                     current_doodad = doodad_type.Destroyed_Bookshelf;
-                    current_doodad_img = destroyed_bookshelf_brush.Image;
                     break;
                 case "HallAnchor":
                     current_doodad = doodad_type.HallAnchor;
-                    current_doodad_img = hallway_anchor_brush.Image;
                     break;
                 case "Ironbar_Door":
                     current_doodad = doodad_type.Ironbar_Door;
-                    current_doodad_img = ironbar_door_brush.Image;
                     break;
                 case "Ironbar_Wall":
                     current_doodad = doodad_type.Ironbar_Wall;
-                    current_doodad_img = ironbar_wall_brush.Image;
+                    break;
+                case "BossSpawn":
+                    current_doodad = doodad_type.Boss_Spawn;
                     break;
             }
         }
@@ -382,13 +397,13 @@ namespace CronkXMLEditor
                     current_monster = monster_type.Zombie;
                     break;
                 case "ZombieFanatic":
-                    current_monster = monster_type.Zombie_Fanatic;
+                    current_monster = monster_type.ZombieFanatic;
                     break;
                 case "GoreHound":
-                    current_monster = monster_type.Gore_Hound;
+                    current_monster = monster_type.GoreHound;
                     break;
                 case "GoreWolf":
-                    current_monster = monster_type.Gore_Wolf;
+                    current_monster = monster_type.GoreWolf;
                     break;
                 case "Necromancer":
                     current_monster = monster_type.Necromancer;
@@ -403,19 +418,34 @@ namespace CronkXMLEditor
                     current_monster = monster_type.Skeleton;
                     break;
                 case "VoidWraith":
-                    current_monster = monster_type.Void_Wraith;
+                    current_monster = monster_type.VoidWraith;
                     break;
                 case "Ghost":
                     current_monster = monster_type.Ghost;
                     break;
                 case "RedKnight":
-                    current_monster = monster_type.Red_Knight;
+                    current_monster = monster_type.RedKnight;
                     break;
                 case "HollowKnight":
-                    current_monster = monster_type.Hollow_Knight;
+                    current_monster = monster_type.HollowKnight;
                     break;
                 case "Schrodingers_HK":
                     current_monster = monster_type.Schrodingers_HK;
+                    break;
+                case "Gangrenous_Shambler":
+                    current_monster = monster_type.Gangrenous_Shambler;
+                    break;
+                case "Rotting_Amalgam":
+                    current_monster = monster_type.Rotting_Amalgam;
+                    break;
+                case "CorpseMimic":
+                    current_monster = monster_type.CorpseMimic;
+                    break;
+                case "Lesser_Revenant":
+                    current_monster = monster_type.LesserRevenant;
+                    break;
+                case "WereGoreHound":
+                    current_monster = monster_type.WereGoreHound;
                     break;
             }
         }
@@ -475,13 +505,17 @@ namespace CronkXMLEditor
             if (room_type_listbox.SelectedIndex >= 0)
                 roomTypeNode.InnerText = room_type_listbox.Items[room_type_listbox.SelectedIndex].ToString();
             else
-                roomTypeNode.InnerText = "Generic";
+                roomTypeNode.InnerText = "Specific";
             XmlNode roomGoldNode = target_doc.CreateElement("RoomGold");
             roomGoldNode.InnerText = room_gold_numeric.Value.ToString();
             XmlNode roomWidthNode = target_doc.CreateElement("RoomWidth");
             roomWidthNode.InnerText = roomwidth.ToString();
             XmlNode roomHeightNode = target_doc.CreateElement("RoomHeight");
             roomHeightNode.InnerText = roomheight.ToString();
+            XmlNode roomHasDoorsNode = target_doc.CreateElement("RoomDoors");
+            roomHasDoorsNode.InnerText = door_chkbox.Checked.ToString().ToLower();
+            XmlNode roomDoorsLockedNode = target_doc.CreateElement("DoorsLocked");
+            roomDoorsLockedNode.InnerText = door_locked_chkbox.Checked.ToString().ToLower();
 
             XmlNode overlapNode = target_doc.CreateElement("AllowOverlap");
             string overlap = "false";
@@ -580,11 +614,22 @@ namespace CronkXMLEditor
                 roomMonstersChancesNode.AppendChild(currentMonsterChanceNode);
             }
 
+            //Boss spawns
+            XmlNode bossSpawnsNode = target_doc.CreateElement("Boss_Spawn_Coordinates");
+            for (int i = 0; i < boss_spawns.Count; i++)
+            {
+                XmlNode c_boss_spawn_node = target_doc.CreateElement("Item");
+                c_boss_spawn_node.InnerText = boss_spawns[i].compressedString();
+                bossSpawnsNode.AppendChild(c_boss_spawn_node);
+            }
+
             roomNode.AppendChild(roomCoordNode);
             roomNode.AppendChild(roomTypeNode);
             roomNode.AppendChild(roomGoldNode);
             roomNode.AppendChild(roomWidthNode);
             roomNode.AppendChild(roomHeightNode);
+            roomNode.AppendChild(roomHasDoorsNode);
+            roomNode.AppendChild(roomDoorsLockedNode);
             roomNode.AppendChild(overlapNode);
             roomNode.AppendChild(roomMatrixNode);
             roomNode.AppendChild(roomHallAnchors);
@@ -597,6 +642,7 @@ namespace CronkXMLEditor
             roomNode.AppendChild(roomMonstersNode);
             roomNode.AppendChild(roomMonstersCoordsNode);
             roomNode.AppendChild(roomMonstersChancesNode);
+            roomNode.AppendChild(bossSpawnsNode);
 
             target_node.AppendChild(roomNode);
 
@@ -627,6 +673,16 @@ namespace CronkXMLEditor
                     return "SB";
                 case tile_type.Deep_Blood:
                     return "DB";
+                case tile_type.Shallow_Sewage:
+                    return "SSwr";
+                case tile_type.Deep_Sewage:
+                    return "DSwr";
+                case tile_type.Entrance:
+                    return "EN";
+                case tile_type.Exit:
+                    return "EX";
+                case tile_type.Rubble_Floor:
+                    return "RF";
             }
 
             return "V";
@@ -663,64 +719,39 @@ namespace CronkXMLEditor
 
         private string monster_type_to_string(monster_type target_type)
         {
-            switch (target_type)
-            {
-                case monster_type.Armored_Skeleton:
-                    return "ArmoredSkel";
-                case monster_type.Boneyard:
-                    return "Boneyard";
-                case monster_type.Ghost:
-                    return "Ghost";
-                case monster_type.Gore_Hound:
-                    return "GoreHound";
-                case monster_type.Gore_Wolf:
-                    return "GoreWolf";
-                case monster_type.Hollow_Knight:
-                    return "HollowKnight";
-                case monster_type.Red_Knight:
-                    return "RedKnight";
-                case monster_type.Necromancer:
-                    return "Necromancer";
-                case monster_type.Skeleton:
-                    return "Skeleton";
-                case monster_type.Void_Wraith:
-                    return "VoidWraith";
-                case monster_type.Zombie:
-                    return "Zombie";
-                case monster_type.Zombie_Fanatic:
-                    return "ZombieFanatic";
-                case monster_type.Schrodingers_HK:
-                    return "Schrodingers_HK";
-            }
-
-            return "NULL";
+            return target_type.ToString();
         }
 
         private void add2_all_btn_Click(object sender, EventArgs e)
         {
             compress_room_to_xml(general_room_list, general_room_path);
         }
-    }
 
-    public class matrix_coord
-    {
-        public int x;
-        public int y;
-
-        public matrix_coord(int sx, int sy)
+        private void add2_flr_btn_Click(object sender, EventArgs e)
         {
-            x = sx;
-            y = sy;
-        }
+            //Step 1. Make a file name. File name is dungeon selected _ floor _ floor #
+            string c_path = dungeon_listbox.Items[dungeon_listbox.SelectedIndex].ToString().ToLower() + "_floor_" + floornumber_numeric.Value.ToString() + ".xml";
+            XmlDocument c_floor_doc = new XmlDocument();
+            //So necropolis floor 3 would be Necropolis_Floor_3
+            //Step 2. Check to make sure that file name exists. If not, create it. If so, load it.
+            if (!File.Exists(c_path))
+            {
+                XmlNode rootNode = c_floor_doc.CreateElement("XnaContent");
+                c_floor_doc.AppendChild(rootNode);
 
-        public override string ToString()
-        {
-            return "X: " + x.ToString() + " Y: " + y.ToString();
-        }
+                XmlNode assetNode = c_floor_doc.CreateElement("Asset");
+                XmlAttribute assetAttribute = c_floor_doc.CreateAttribute("Type");
+                assetAttribute.Value = "CKPLibrary.RoomDC[]";
+                assetNode.Attributes.Append(assetAttribute);
 
-        public string compressedString()
-        {
-            return "X:"+x.ToString() + " Y:" + y.ToString();
+                rootNode.AppendChild(assetNode);
+
+                c_floor_doc.Save(c_path);
+            }
+            else
+                c_floor_doc.Load(c_path);
+            //Step 3. run compress_room_to_xml with the document and the path and you're good.
+            compress_room_to_xml(c_floor_doc, c_path);
         }
     }
 }

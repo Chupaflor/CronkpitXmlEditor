@@ -236,5 +236,12 @@ namespace CronkXMLEditor
             spawnDesigner.MdiParent = this;
             spawnDesigner.Show();
         }
+
+        private void featureSpecifierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FeatureSpecificerForm featureSpecs = new FeatureSpecificerForm();
+            featureSpecs.MdiParent = this;
+            featureSpecs.Show();
+        }
     }
 }

@@ -65,7 +65,7 @@
             // 
             // spawnchance_listbox
             // 
-            this.spawnchance_listbox.FormattingEnabled = true;
+            this.spawnchance_listbox.HorizontalScrollbar = true;
             this.spawnchance_listbox.Location = new System.Drawing.Point(15, 424);
             this.spawnchance_listbox.Name = "spawnchance_listbox";
             this.spawnchance_listbox.Size = new System.Drawing.Size(120, 264);
@@ -76,7 +76,7 @@
             this.mspawn_byfamily_listbox.FormattingEnabled = true;
             this.mspawn_byfamily_listbox.Location = new System.Drawing.Point(177, 269);
             this.mspawn_byfamily_listbox.Name = "mspawn_byfamily_listbox";
-            this.mspawn_byfamily_listbox.Size = new System.Drawing.Size(120, 108);
+            this.mspawn_byfamily_listbox.Size = new System.Drawing.Size(167, 108);
             this.mspawn_byfamily_listbox.TabIndex = 2;
             // 
             // label1
@@ -132,21 +132,25 @@
             this.single_monster_listbox.Items.AddRange(new object[] {
             "Armored_Skeleton",
             "Boneyard",
+            "Gangrenous_Shambler",
             "CorpseMimic",
             "Ghost",
             "GoldMimic",
             "GoreHound",
             "GoreWolf",
+            "WereGoreHound",
             "HollowKnight",
             "Necromancer",
             "RedKnight",
             "Skeleton",
             "VoidWraith",
             "Zombie",
-            "ZombieFanatic"});
+            "ZombieFanatic",
+            "LesserRevenant",
+            "Rotting_Amalgam"});
             this.single_monster_listbox.Location = new System.Drawing.Point(177, 25);
             this.single_monster_listbox.Name = "single_monster_listbox";
-            this.single_monster_listbox.Size = new System.Drawing.Size(120, 225);
+            this.single_monster_listbox.Size = new System.Drawing.Size(167, 225);
             this.single_monster_listbox.TabIndex = 7;
             this.single_monster_listbox.Click += new System.EventHandler(this.single_monster_listbox_Click);
             // 
@@ -191,7 +195,7 @@
             "Necropolis"});
             this.dungeon_listbox.Location = new System.Drawing.Point(179, 424);
             this.dungeon_listbox.Name = "dungeon_listbox";
-            this.dungeon_listbox.Size = new System.Drawing.Size(120, 95);
+            this.dungeon_listbox.Size = new System.Drawing.Size(165, 95);
             this.dungeon_listbox.TabIndex = 12;
             // 
             // label7

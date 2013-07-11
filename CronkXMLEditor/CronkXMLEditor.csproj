@@ -64,6 +64,12 @@
     <Compile Include="DungeonRoomEditorForm.Designer.cs">
       <DependentUpon>DungeonRoomEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FeatureSpecificerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FeatureSpecificerForm.Designer.cs">
+      <DependentUpon>FeatureSpecificerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ItemEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,7 @@
     <Compile Include="ArmorDialog.Designer.cs">
       <DependentUpon>ArmorDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="matrix_coord.cs" />
     <Compile Include="MDIMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DungeonRoomEditorForm.resx">
       <DependentUpon>DungeonRoomEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FeatureSpecificerForm.resx">
+      <DependentUpon>FeatureSpecificerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ItemEdit.resx">
       <DependentUpon>ItemEdit.cs</DependentUpon>
